@@ -1,17 +1,11 @@
 /*******************************************************************************
  * FILE NAME: degub.cpp
- * DATE: ${date}
+ * DATE: 2013-10-16
  * AUTHOR: Zachary Priddy
  *              me@zpriddy.com
  *              zpriddy@asu.edu
  * 
  * DESC:
- * 
- * 
- * 
- * CHANGE LOG:
- *      ${date}: File Created
- *      
  * 
  * 
  ******************************************************************************/

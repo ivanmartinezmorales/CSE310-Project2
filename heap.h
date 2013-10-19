@@ -1,9 +1,14 @@
-/* 
- * File:   heap.h
- * Author: zpriddy
- *
- * Created on ${date}, 6:02 PM
- */
+/*******************************************************************************
+ * FILE NAME: heap.h
+ * DATE: 2013-10-15
+ * AUTHOR: Zachary Priddy
+ *              me@zpriddy.com
+ *              zpriddy@asu.edu
+ * 
+ * DESC:
+ * 
+ * 
+ ******************************************************************************/
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
@@ -141,16 +146,7 @@ void Sort_Heap(HEAP&);
 
 
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
 
-
-
-
-#ifdef	__cplusplus
-}
-#endif
 
 #endif	/* HEAP_H */
 

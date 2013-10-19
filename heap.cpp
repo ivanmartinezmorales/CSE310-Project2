@@ -1,17 +1,11 @@
 /*******************************************************************************
  * FILE NAME: heap.cpp
- * DATE: ${date}
+ * DATE: 2013-10-15
  * AUTHOR: Zachary Priddy
  *              me@zpriddy.com
  *              zpriddy@asu.edu
  * 
  * DESC:
- * 
- * 
- * 
- * CHANGE LOG:
- *      ${date}: File Created
- *      
  * 
  * 
  ******************************************************************************/
