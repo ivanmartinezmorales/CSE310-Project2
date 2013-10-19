@@ -22,9 +22,6 @@ struct Element
 };
 
 class HEAP {
-
-    
-    
     public:
         HEAP ();
         HEAP (int, int, Element[]);
@@ -119,10 +116,7 @@ class HEAP {
             return this->get_left_child(node);
         }
 
-        
 
-
-        
     private:
         int capacity;
         int size;
