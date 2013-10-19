@@ -9,7 +9,7 @@
  * 
  * 
  ******************************************************************************/
-
+//Includes
 #include <iostream>
 #include <cstdlib>
 
@@ -20,23 +20,11 @@ using namespace std;
 #define	DEBUG_H
 
 
-
+//Function Prototypes
 void debug(string);
 void debug(int);
 void debug(string, int);
 
-
-
-#ifdef	__cplusplus
-extern "C" {
-#endif
-
-
-
-
-#ifdef	__cplusplus
-}
-#endif
 
 #endif	/* DEBUG_H */
 

@@ -14,6 +14,7 @@
 
 using namespace std;
 
+//Change this to 1 to display debug messages
 int DEBUG=0;
 
 
@@ -43,6 +44,4 @@ void debug(string desc, int out)
         cout << "DEBUG: " << desc << "\n";
         cout << out << "\n";
     }
-    
-    
 }

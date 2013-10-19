@@ -35,8 +35,7 @@ HEAP::HEAP(int h_capacity, int h_size, Element h_element[])
 }
 
 HEAP::HEAP()
-{
-    
+{  
 }
 
 HEAP::HEAP(int h_capacity, int h_size)
@@ -48,8 +47,8 @@ HEAP::HEAP(int h_capacity, int h_size)
 
 HEAP::~HEAP(void)
 {
-    //element = new Element[0];
-    //delete[] element;
+    element = new Element[1];
+    delete[] element;
 }
 
 
@@ -66,9 +65,7 @@ HEAP::~HEAP(void)
 HEAP InitializeHeap(int h_capacity)
 {
     HEAP return_heap(h_capacity, 0);
-    
     return return_heap;
-    
 }
 
 /******************************************************************************
@@ -100,9 +97,6 @@ void BuildHeap(HEAP &i_heap, Element a[], int size)
     {
         Heapify(i_heap, i);
     }
-    
-   
-    
 }
 
 /******************************************************************************
@@ -165,8 +159,6 @@ void Heapify(HEAP &i_heap, int element)
         i_heap.set_element(element, largest_element);
         Heapify(i_heap, largest);
     }
-
-
 }
 /******************************************************************************
 * FUNCTION: InsertHeap(HEAP &i_heap, int key)
@@ -212,7 +204,6 @@ int DeleteMaxHeap(HEAP &i_heap)
     }  
 
     return deleted_element.key;  
-   
 }
 
 /******************************************************************************
@@ -233,9 +224,6 @@ void IncreaseKeyHeap(HEAP &i_heap, int element, int key)
         i_heap.swap_with_parent(element);
         element = i_heap.get_parent(element);
     }
-
-
-
  }
 
 /******************************************************************************
@@ -258,7 +246,6 @@ void PrintHeap(HEAP i_heap)
         cout << "| ";
     }
     
-    cout << "]\n";
-    
+    cout << "]\n"; 
 }
  
