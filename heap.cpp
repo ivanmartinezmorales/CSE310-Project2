@@ -18,6 +18,7 @@
 #include <iostream>
 #include <cstdlib>
 
+
 using namespace std;
 
 #include "heap.h"
@@ -86,7 +87,6 @@ HEAP InitializeHeap(int h_capacity)
 void BuildHeap(HEAP &i_heap, Element a[], int size)
 {
 
-    i_heap.set_size_final(size);
 
     debug("size of a", size);
     debug("Size before build heap", i_heap.get_size());
@@ -100,7 +100,12 @@ void BuildHeap(HEAP &i_heap, Element a[], int size)
     debug("Size after build heap", i_heap.get_size());
     debug(i_heap.get_element(0).key);
 
-    Sort_Heap(i_heap);
+    debug("i",floor(i_heap.get_size()/2));
+
+    for(int i=floor(i_heap.get_size()/2); i >= 1 ; i--)
+    {
+        Heapify(i_heap, i);
+    }
     
    
     
@@ -120,7 +125,7 @@ void InsertToHeap(HEAP &i_heap, Element i_element)
     i_heap.set_element(i_heap.get_size(), i_element);
     
     //DEBUG STATMENT
-    PrintHeap(i_heap);
+    //PrintHeap(i_heap);
 
 }
 
@@ -131,128 +136,44 @@ void InsertToHeap(HEAP &i_heap, Element i_element)
 *
 * Calls: Heapify(HEAP, element#)
 ******************************************************************************/
-void Heapify(HEAP &i_heap, int element, int furthest_left_node)
+void Heapify(HEAP &i_heap, int element)
 {
-    PrintHeap(i_heap);
+    debug("Heapify");
+    //PrintHeap(i_heap);
+    //Get the key values for the left and right elements
+    int left_key, right_key, largest;
+    int current_key = i_heap.get_element(element).key;
+    int left_node = i_heap.get_left_child(element);
+    int right_node = i_heap.get_right_child(element);
 
-    if(element == furthest_left_node)
+    if(left_node <= i_heap.get_size())
     {
-        debug("SHOULD BE FIRST TIME");
-        element = i_heap.get_parent(furthest_left_node);
-    }
+        left_key = i_heap.get_left_child_element(element).key;
 
-    //while(element != furthest_left_node)
-    for(int i=0 ; i < i_heap.get_size()*9 ; i++)
-    {
-        debug("WHILE LOOP");
-        PrintHeap(i_heap);
-        //If the element has two children then swap with the largest one
-        if(i_heap.parent_has_two_children(element))
-        {
-            if(i_heap.get_left_child_element(element).key > i_heap.get_element(element).key && i_heap.get_right_child_element(element).key > i_heap.get_element(element).key)
-            {
-                if(i_heap.get_left_child_element(element).key > i_heap.get_right_child_element(element).key)
-                {
-                    element = i_heap.swap_with_left_child(element);
-                }
-                else
-                {
-                    element = i_heap.swap_with_right_child(element);
-                }
-
-            }
-            else if(i_heap.get_left_child_element(element).key > i_heap.get_element(element).key && i_heap.get_right_child_element(element).key <= i_heap.get_element(element).key)
-            {
-                element = i_heap.swap_with_left_child(element);
-            }
-            else if(i_heap.get_right_child_element(element).key > i_heap.get_element(element).key && i_heap.get_left_child_element(element).key <= i_heap.get_element(element).key)
-            {
-                element = i_heap.swap_with_right_child(element);
-            }
-            else
-            {
-                if(element == 1)
-                {
-                    //if(i_heap.is_element(furthest_left_node+1))
-                    //    element = element + 1;
-                    //else 
-                        element = 3;
-
-                }
-                else
-                    element = i_heap.get_parent(element);
-            }
-
-
-        }
-        else if(i_heap.get_left_child_element(element).key > i_heap.get_element(element).key)
-        {
-            element = i_heap.swap_with_left_child(element);
-        }
+        if(left_key > current_key)
+            largest = left_node;
         else
-        {
-            if(element == 1)
-            {
-                if(i_heap.is_element(furthest_left_node+1))
-                    element = element + 1;
-                else 
-                    element = 3;
-
-            }
-            else
-                element = i_heap.get_parent(element);
-        }
-
-        //Heapify(i_heap, element, furthest_left_node);
-        
+            largest = element;
     }
-
-    /*
-    if(i_heap.is_element(element+1))
-        element = element+1;
     else
-        element = i_heap.get_parent(element)+1;
-
-    Heapify(i_heap, element, furthest_left_node);
-    */
-}
-
-void Sort_Heap(HEAP &i_heap)
-{
-    //Find furthest left leaf node
-    int current_node = 1;
-    int furthest_left_node;
-    int node_to_check;
-    //Keep going left until you find a leaf node
-    while(!i_heap.is_leaf_element(current_node))
+        largest = element;
+    if(right_node <= i_heap.get_size())
     {
-        current_node = 2*current_node;
+        right_key = i_heap.get_right_child_element(element).key;
+
+        if(right_key > i_heap.get_element(largest).key)
+            largest = right_node;
     }
-    furthest_left_node = current_node;
-
-    Heapify(i_heap, current_node, furthest_left_node);
-/*
-    if(i_heap.is_element(furthest_left_node+1))
-        node_to_check = furthest_left_node+1;
-    else
-        node_to_check = i_heap.get_parent(furthest_left_node)+1;
-
-    current_node = node_to_check;
-
-    while(current_node != furthest_left_node)
+    if(largest != element)
     {
-        if(i_heap.is_leaf_element(current_node))
-            Heapify(i_heap, current_node, furthest_left_node);
-        if(i_heap.is_element(current_node+1))
-            current_node = current_node+1;
-        else
-            current_node = i_heap.get_parent(current_node)+1;
+        Element largest_element = i_heap.get_element(largest);
+        i_heap.set_element(largest, i_heap.get_element(element));
+        i_heap.set_element(element, largest_element);
+        Heapify(i_heap, largest);
     }
 
-    */
 
 }
-
 /******************************************************************************
 * FUNCTION: InsertHeap(HEAP &i_heap, int key)
 *
@@ -269,17 +190,10 @@ void InsertHeap(HEAP &i_heap, int key)
     //Insert the new element into the Heap
     InsertToHeap(i_heap, new_element);
 
-    int current_node = 1;
-    int furthest_left_node;
-    int node_to_check;
-    //Keep going left until you find a leaf node
-    while(!i_heap.is_leaf_element(current_node))
+    for(int i=floor(i_heap.get_size()/2); i >= 1 ; i--)
     {
-        current_node = 2*current_node;
+        Heapify(i_heap, i);
     }
-    furthest_left_node = current_node;
-
-    Heapify(i_heap, current_node, furthest_left_node);
 }
 
 /******************************************************************************
@@ -291,53 +205,20 @@ void InsertHeap(HEAP &i_heap, int key)
 * Calls:  InitializeHeap(Capacity)
 *         InsertToHeap(HEAP, Element)
 ******************************************************************************/
-Element DeleteMaxHeap(HEAP &i_heap)
+int DeleteMaxHeap(HEAP &i_heap)
 {
-    Element return_element;
-    //Max element will be at the element 1
-    return_element = i_heap.get_element(1);
-    i_heap.set_element(1, i_heap.get_element(i_heap.get_size()));
+    Element deleted_element = i_heap.get_element(1);
 
-    int current_node = 1;
+    i_heap.set_element(1, i_heap.get_element(i_heap.get_size()));
     i_heap.dec_size();
 
-    while(!i_heap.is_leaf_element(current_node))
+    for(int i=floor(i_heap.get_size()/2); i >= 1 ; i--)
     {
-        PrintHeap(i_heap);
-        debug("DEL HEAP");
-        if(i_heap.parent_has_two_children(current_node))
-        {
+        Heapify(i_heap, i);
+    }  
 
-            if(i_heap.get_left_child_element(current_node).key > i_heap.get_right_child_element(current_node).key)
-            {
-                current_node = i_heap.swap_with_left_child(current_node);
-            }
-            else
-            {
-                current_node = i_heap.swap_with_right_child(current_node);
-            }
-
-
-        }
-        else if(i_heap.get_left_child_element(current_node).key > i_heap.get_element(current_node).key)
-        {
-            current_node = i_heap.swap_with_left_child(current_node);
-        }
-        else
-        {
-        
-        }
-    }
-    
-
-    
-
-    //i_heap = new_heap;
-    //delete new_heap;
-    
-
-    //Return the element that was deleted
-    return return_element;
+    return deleted_element.key;  
+   
 }
 
 /******************************************************************************
@@ -352,24 +233,17 @@ void IncreaseKeyHeap(HEAP &i_heap, int element, int key)
 {
     //Set the element key
     i_heap.set_element_key(element, key);
-    
-    //Re-order the heap
-    //HEAP new_heap = InitializeHeap(i_heap.get_capacity());
-    //for(int i=1; i <= i_heap.get_size() ; i++)
-    //{
-    //    InsertToHeap(new_heap, i_heap.get_element(i));
-    //}
 
-    //set the old heap to the new heap
-    
-    //i_heap = new_heap;
-    //
-    Heapify(i_heap, element, 2*2*2);
-    return;
+    while(element > 1 && i_heap.get_parent_element(element).key < key)
+    {
+        i_heap.swap_with_parent(element);
+        element = i_heap.get_parent(element);
+    }
 
-    
-}
- 
+
+
+ }
+
 /******************************************************************************
 * FUNCTION: PrintHeap(HEAP i_heap)
 * 

@@ -6,6 +6,8 @@
  */
 #include <iostream>
 #include <cstdlib>
+#include <cmath>
+#include <climits>
 
 using namespace std;
 
@@ -29,7 +31,6 @@ class HEAP {
         HEAP (int, int, int);
         HEAP (int, int);
         ~HEAP(void);
-        //void BuildHeap(HEAP , int);
         void InsertHeap(HEAP, int);
         
         void set_size_final(int fsize) {size_final=fsize;}
@@ -43,25 +44,18 @@ class HEAP {
         
         Element get_element(int n) {return element[(n-1)];}
         void set_element_key(int node, int key) {this->element[(node-1)].key = key;}
-        void set_element(int node, const Element i_element) {this->element[(node-1)] = i_element;} 
+        void set_element(int node,  Element i_element) {this->element[(node-1)] = i_element;} 
 
         int get_parent(int node)
         {
-            int parent;
-
-            if(node%2 == 0)
-            {
-                parent = node/2;
-            }
+            if(node == 1)
+                return NULL;
             else
-            {
-                parent = (node-1)/2;
-            }
-            return parent;
+                return floor(node/2);
         }
-        Element get_parent_element(int node)
+         Element get_parent_element(int node)
         {
-            return (this->get_element(this->get_parent(node)));
+           return (this->get_element(this->get_parent(node)));
         }
         bool parent_has_two_children(int node)
         {
@@ -76,7 +70,10 @@ class HEAP {
         }
         int get_right_child(int node)
         {
-            return node*2+1;
+            if(2*node+1 <= this->size)
+                return node*2+1;
+            else
+                return INT_MAX;
         }
         Element get_left_child_element(int node)
         {
@@ -84,15 +81,10 @@ class HEAP {
         }
         int get_left_child(int node)
         {
-            return node*2;
-        }
-
-        bool is_leaf_element(int node)
-        {
-            if(this->size >= 2*node)
-                return false;
-            else 
-                return true;
+            if(node*2 <= this->get_size())
+                return node*2;
+            else
+                return INT_MAX;
         }
         bool is_element(int node)
         {
@@ -103,8 +95,8 @@ class HEAP {
         }
         void swap_with_parent(int node)
         {
-            cout << "Parent Element = :" << this->get_parent(node) << "\n";
-            const Element parent_element = this->get_parent_element(node);
+            
+            Element parent_element = this->get_parent_element(node);
             this->set_element(this->get_parent(node), this->get_element(node));
             this->set_element(node, parent_element);
             return;
@@ -112,7 +104,7 @@ class HEAP {
         //Swap with right and return node of where orginal element is
         int swap_with_right_child(int node)
         {
-            const Element current_element = this->get_element(node);
+             Element current_element = this->get_element(node);
             this->set_element(node, this->get_right_child_element(node));
             this->set_element(this->get_right_child(node), current_element);
             return this->get_right_child(node);
@@ -121,7 +113,7 @@ class HEAP {
         //Swap with left and return node of where orginal element is
         int swap_with_left_child(int node)
         {
-            const Element current_element = this->get_element(node);
+             Element current_element = this->get_element(node);
             this->set_element(node, this->get_left_child_element(node));
             this->set_element(this->get_left_child(node), current_element);
             return this->get_left_child(node);
@@ -144,13 +136,13 @@ class HEAP {
 
 
 HEAP InitializeHeap(int);
-Element DeleteMaxHeap(HEAP&);
-void InsertToHeap(HEAP&, const Element);
+int DeleteMaxHeap(HEAP&);
+void InsertToHeap(HEAP&,  Element);
 void InsertHeap(HEAP&, int);
 void BuildHeap(HEAP&, Element[], int);
 void IncreaseKeyHeap(HEAP&, int, int);
 void PrintHeap(HEAP);
-void Heapify(HEAP&, int, int);
+void Heapify(HEAP&, int);
 void Sort_Heap(HEAP&);
 
 
