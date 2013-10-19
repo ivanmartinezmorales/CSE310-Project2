@@ -29,51 +29,55 @@ int main(int argc, char** argv) {
     
     //HEAP test_heap(20, 0);
     HEAP test_heap = InitializeHeap(20);
-    Element b, c, d, e, f, g, h, i, j, k, l, m, n, o, p,q;
-    b.key = 1;
-    c.key = 9;
-    d.key = 2;
-    e.key = 4;
-    f.key = 10;
-    g.key = 5;
-    h.key = 7;
-    i.key = 3;
-    j.key = 17;
-    k.key = 92;
-    l.key = 67;
-    m.key = 79;
-    n.key = 62;
-    o.key = 52;
-    p.key = 32;
-    q.key = 100;
-    Element a[8];
+    Element b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q;
+    b.key = 15;
+    c.key = 11;
+    d.key = 23;
+    e.key = 32;
+    f.key = 25;
+    g.key = 67;
+    h.key = 45;
+    i.key = 40;
+    j.key = 78;
+    k.key = 56;
+    l.key = 44;
+    m.key = 34;
+    n.key = 109;
+    o.key = 33;
+    p.key = 12;
+    q.key = 24;
+    Element a[20];
     //a = new Element[5];
-    a[0]  = b;
-    a[1]  = c;
-    a[2]  = d;
-    a[3]  = e;
-    a[4]  = f;
-    a[5]  = g;
-    a[6]  = h;
-    a[7]  = i;
-    /*
-    a[8]  = j;
-    a[9]  = k;
-    a[10] = l;
-    a[11] = m;
-    a[12] = n;
-    a[13] = o;
-    a[14] = p;
-    */
+    //a[0]  = b;
+    a[0]  = c;
+    a[1]  = d;
+    a[2]  = e;
+    a[3]  = f;
+    a[4]  = g;
+    a[5]  = h;
+    a[6]  = i;
+    a[7]  = j;
+    a[8]  = k;
+    a[9] =  l;
+    a[10] = m;
+    a[11] = n;
+    a[12] = o;
+    a[13] = p;
+    a[14] = q;
     
     
     
-    BuildHeap(test_heap, a, 8);
+    
+    BuildHeap(test_heap, a, 15);
     //cout << test_heap.get_capacity();
     PrintHeap(test_heap);
-    /*
-    DeleteMaxHeap(test_heap);
+    //InsertHeap(test_heap, 89);
+    //PrintHeap(test_heap);
+    //DeleteMaxHeap(test_heap);
+    //IncreaseKeyHeap(test_heap, 10, 78);
     PrintHeap(test_heap);
+    //InsertHeap(test_heap, 8);
+    /*
     InsertToHeap(test_heap, q);
     PrintHeap(test_heap);
     IncreaseKeyHeap(test_heap, 2, 102);

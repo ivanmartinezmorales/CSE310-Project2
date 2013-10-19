@@ -4,7 +4,10 @@
  *
  * Created on ${date}, 6:02 PM
  */
+#include <iostream>
+#include <cstdlib>
 
+using namespace std;
 
 #ifndef HEAP_H
 #define	HEAP_H
@@ -40,7 +43,7 @@ class HEAP {
         
         Element get_element(int n) {return element[(n-1)];}
         void set_element_key(int node, int key) {this->element[(node-1)].key = key;}
-        void set_element(int node, Element i_element) {this->element[(node-1)] = i_element;} 
+        void set_element(int node, const Element i_element) {this->element[(node-1)] = i_element;} 
 
         int get_parent(int node)
         {
@@ -83,13 +86,48 @@ class HEAP {
         {
             return node*2;
         }
-        bool    is_leaf_element(int node)
+
+        bool is_leaf_element(int node)
         {
-            if(this->size_final <= 2*node+1)
-                return true;
+            if(this->size >= 2*node)
+                return false;
             else 
+                return true;
+        }
+        bool is_element(int node)
+        {
+            if(node <= this->size)
+                return true;
+            else
                 return false;
         }
+        void swap_with_parent(int node)
+        {
+            cout << "Parent Element = :" << this->get_parent(node) << "\n";
+            const Element parent_element = this->get_parent_element(node);
+            this->set_element(this->get_parent(node), this->get_element(node));
+            this->set_element(node, parent_element);
+            return;
+        }
+        //Swap with right and return node of where orginal element is
+        int swap_with_right_child(int node)
+        {
+            const Element current_element = this->get_element(node);
+            this->set_element(node, this->get_right_child_element(node));
+            this->set_element(this->get_right_child(node), current_element);
+            return this->get_right_child(node);
+        }
+
+        //Swap with left and return node of where orginal element is
+        int swap_with_left_child(int node)
+        {
+            const Element current_element = this->get_element(node);
+            this->set_element(node, this->get_left_child_element(node));
+            this->set_element(this->get_left_child(node), current_element);
+            return this->get_left_child(node);
+        }
+
+        
 
 
         
@@ -107,12 +145,13 @@ class HEAP {
 
 HEAP InitializeHeap(int);
 Element DeleteMaxHeap(HEAP&);
-void InsertToHeap(HEAP&, Element);
+void InsertToHeap(HEAP&, const Element);
 void InsertHeap(HEAP&, int);
 void BuildHeap(HEAP&, Element[], int);
 void IncreaseKeyHeap(HEAP&, int, int);
 void PrintHeap(HEAP);
-void Heapify(HEAP&, int);
+void Heapify(HEAP&, int, int);
+void Sort_Heap(HEAP&);
 
 
 
