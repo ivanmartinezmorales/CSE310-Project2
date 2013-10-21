@@ -2,4 +2,27 @@ README
 
 This project is for ASU CSE310 of fall 2013. 
 
-It is working with Max-Heaps
+Writen by: Zachary Priddy
+
+Notes:
+ There is error checking put into place and will display the error to the screen if you try to do something that will violate the algorthims. These errors are listed below. There are also warings that will not stop the program but might explan why the output isnt what you would think it is. Those are also listed below. 
+
+
+
+
+ ERRORS: 
+ 	HEAP HAS NOT BEEN CREATED
+	HEAP HAS ALREADY BEEN CREATED
+	THE HEAP HAS HIT IS COMPACITY
+	PLEASE ENTER A VALUE THAT IS LARGER THAN THE EXISTING VALUE
+	COMPACITY MUST BE LARGER THAN 0
+	CANT OPEN INPUT FILE
+	SIZE MUST BE LARGER THAN 0
+	REQUESTED ELEMENT IS OUTSIDE OF THE SIZE OF THE HEAP
+	HEAP SIZE IS ALREADY AT 0, CAN NOT DELETE ANY MORE
+
+WARNINGS:
+	MORE LINES IN THE THE INPUT FILE THAN LISTED AT THE TOP - ONLY READING THE NUMBER OF LINES LISTED AT THE TOP
+	NUMBER FROM FILE DOSENT APPARE TO BE A NUMBER (OR IS 0)
+	REQUESTED TO READ MORE LINES THE THE CAPACITY IS SET TO - WILL ONLY READ UPTO THE CAPACITY
+

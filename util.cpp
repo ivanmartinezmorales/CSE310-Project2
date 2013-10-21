@@ -84,8 +84,6 @@ void errorOut(int error_code)
 		cout << "HEAP SIZE IS ALREADY AT 0, CAN NOT DELETE ANY MORE\n";
 		break;
 
-
-
 	default:
 		cout << "UNKNOWN ERROR... QUITING";
 		exit(0);
