@@ -77,15 +77,18 @@ HEAP InitializeHeap(int h_capacity)
 ******************************************************************************/
 void BuildHeap(HEAP &i_heap, Element a[], int size)
 {
+    int init_size = i_heap.get_size();
 
 
     debug("size of a", size);
     debug("Size before build heap", i_heap.get_size());
     
     //Make the heap in the order of the array
-    for (int i = 0 ; i < size && i < i_heap.get_capacity(); i++)
+    for (int i = init_size ; i < size+init_size && i < i_heap.get_capacity(); i++)
     {
-        InsertToHeap(i_heap, a[i]);    
+        if(i > i_heap.get_capacity())
+            cout << "BIG ERROR";
+        InsertToHeap(i_heap, a[i-init_size]);    
     }
     
     debug("Size after build heap", i_heap.get_size());
@@ -235,17 +238,12 @@ void IncreaseKeyHeap(HEAP &i_heap, int element, int key)
 ******************************************************************************/
 void PrintHeap(HEAP i_heap)
 {
-    cout << "HEAP Size: " << i_heap.get_size() << "\n";
-    cout << "HEAP Capacity: " << i_heap.get_capacity() << "\n";
-    cout << "[ ";
+    cout << i_heap.get_capacity() << "\n";
+    cout << i_heap.get_size() << "\n";
     for (int i=1 ; i <= i_heap.get_size() ; i++)
     {
-        cout << i_heap.get_element(i).key << " ";
-        
-        if(i <= (i_heap.get_size()-1))
-        cout << "| ";
+        cout << i_heap.get_element(i).key << "\n";
     }
-    
-    cout << "]\n"; 
+
 }
  

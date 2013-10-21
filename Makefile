@@ -9,7 +9,7 @@
 #Name the output file here
 EXECUTABLE=project2
 # List sources here seperated by a space:
-SOURCES=main.cpp debug.cpp heap.cpp util.cpp
+SOURCES=main.cpp debug.cpp heap.cpp util.cpp fileio.cpp
 # List objects here sperated by a space after $(....o):
 OBJECTS=$(SOURCES:.cpp=.o)
 # Other Settigns
