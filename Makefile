@@ -9,7 +9,7 @@
 #Name the output file here
 EXECUTABLE=project2
 # List sources here seperated by a space:
-SOURCES=main.cpp debug.cpp heap.cpp
+SOURCES=main.cpp debug.cpp heap.cpp util.cpp
 # List objects here sperated by a space after $(....o):
 OBJECTS=$(SOURCES:.cpp=.o)
 # Other Settigns
@@ -35,7 +35,8 @@ $(EXECUTABLE): $(OBJECTS)
 %.d: %.cpp
 	rm -f $@; g++ -MM $< > $@
 
-include $(SOURCES:.cpp=.d)
+#This is for when you have .d files you need to read
+#include $(SOURCES:.cpp=.d)
 
 .PHONY: clean
 clean:

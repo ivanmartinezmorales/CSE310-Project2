@@ -12,6 +12,7 @@
 
 #include "heap.h"
 #include "debug.h"
+#include "util.h"
 
 
 using namespace std;
@@ -21,11 +22,90 @@ using namespace std;
  */
 
 
-
-
 int main(int argc, char** argv) {
 
+    int i, v;
+    HEAP heap;
+    bool heap_created = false;
+    char command;
+    char exit_command = 's';
 
+    while( command != exit_command)
+    {
+        command = nextCommand(i, v);
+
+        switch (command)
+        {
+            case 'k':
+            case 'K':
+                printf("COMMAND: %c %d %d\n", command, i, v);
+                if(heap_created)
+                {
+                    //CHECK IF VALUE IS LARGER THAN EXISTING VALUE
+                    IncreaseKeyHeap(heap, i, v);
+                }
+                else
+                    printf("ERROR: NO HEAP CREATED!\n");
+
+                break;
+            case 'r':
+            case 'R':
+                printf("COMMAND: %c\n", command);
+
+                break;
+
+            case 'w':
+            case 'W':
+                printf("COMMAND: %c\n", command);
+                if(heap_created)
+                    PrintHeap(heap);
+                else
+                    printf("ERROR: NO HEAP CREATED!\n");
+                break;
+
+            case 'i':
+            case 'I':
+                printf("COMMAND %c %d \n", command, i);
+                if(heap_created)
+                    InsertHeap(heap, i);
+                else
+                    printf("ERROR: NO HEAP CREATED!\n");
+                break;
+
+            case 'd':
+            case 'D':
+                printf("COMMAND: %c\n", command);
+                if(heap_created)
+                    DeleteMaxHeap(heap);
+                else
+                    printf("ERROR: NO HEAP CREATED!\n");
+                break;
+
+            case 'c':
+            case 'C':
+                printf("COMMAND: %c %d\n", command, i);
+                if(!heap_created)
+                {
+                    heap = InitializeHeap(i);
+                    heap_created = true;
+                }
+                else
+                    printf("Heap has already been \n");
+                break;
+
+
+            case 's':
+            case 'S':
+                cout << "COMMAND: " << command << "\n";
+                cout << "\nExiting.. Goodbye!\n";
+                command = 's';
+                break;
+
+            default: break;
+        }
+    }
+
+/*
     
     //HEAP test_heap(20, 0);
     HEAP test_heap = InitializeHeap(10);
@@ -55,7 +135,7 @@ int main(int argc, char** argv) {
     a[3]  = f;
     a[4]  = g;
     a[5]  = h;
-    /*
+    
     a[6]  = i;
     a[7]  = j;
     a[8]  = k;
@@ -65,9 +145,9 @@ int main(int argc, char** argv) {
     a[12] = o;
     a[13] = p;
     a[14] = q;
-    */
     
     
+   
     
     BuildHeap(test_heap, a, 6);
     //cout << test_heap.get_capacity();
@@ -79,6 +159,7 @@ int main(int argc, char** argv) {
     IncreaseKeyHeap(test_heap, 2, 8);
     PrintHeap(test_heap);
     //InsertHeap(test_heap, 78);
+    */
     /*
     InsertToHeap(test_heap, q);
     PrintHeap(test_heap);
