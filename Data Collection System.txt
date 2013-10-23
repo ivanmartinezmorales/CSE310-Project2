@@ -1,0 +1,8 @@
+Data Collection System
+
+Depending on our sponsors, the data collection system will be one of the following systems:
+
+Option 1:
+The data collection system will consist of a series of NI gigE cameras, a main processing computer, and a tablet controller. In order to get the data throughput that we will need, each gigE camera will be able to capture up to 175fps and the gigE connector can transfer at speeds up to 10MB/s. Each camera will have an independent connector going to a gigE capture card that is capable of capturing from up to four cameras. The main computer will consist of Intel i7 processor with three gigE capture cards and a SSD RAID (solid state drive redundant array of independent disks) file system allowing us to write files to the drive at 500MB/s, giving us a good buffer to avoid losing data. This system will be writing in National Instruments LabVIEW programming environment, allowing remote control of the system using a touch screen tablet eliminating the need for a keyboard or mouse.
+
+Option 2:

@@ -17,6 +17,7 @@
 
  string filename = "HEAPinput.txt";
 
+//Reads just the first number in the file
  int ReadInputFile()
  {
  	int size;
@@ -42,6 +43,7 @@
 
  }
 
+//reads from the second number to the last 
  void ReadInputFile(HEAP &i_heap, Element a[], int size)
  {
  	int read_number;
