@@ -8,6 +8,10 @@
 
 #include "util.h"
 #include <iostream>
+#include <cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstring>
 
  using namespace std;
 

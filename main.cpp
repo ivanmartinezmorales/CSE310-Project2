@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <cmath>
+ #include <stdio.h>
 
 #include "heap.h"
 #include "debug.h"
@@ -63,13 +64,18 @@ int main(int argc, char** argv) {
             case 'r':
             case 'R':
                 if(display_command){printf("COMMAND: %c\n", command);}
-                int size;
-                size = ReadInputFile();
-                if(size == 0)
-                    break;
-                MakeElementArray(size);
-                ReadInputFile(heap, a, size);
-                BuildHeap(heap, a, size);
+                if(heap_created)
+                {
+                    int size;
+                    size = ReadInputFile();
+                    if(size == 0)
+                        break;
+                    MakeElementArray(size);
+                    ReadInputFile(heap, a, size);
+                    BuildHeap(heap, a, size);
+                }
+                else
+                    errorOut(1);
                 break;
 
             case 'w':

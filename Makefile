@@ -14,7 +14,7 @@ SOURCES=main.cpp debug.cpp heap.cpp util.cpp fileio.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 # Other Settigns
 CC=g++
-CFLAGS=-c -Wall
+CFLAGS=-c -Wall -w
 LDFLAGS=
 
 ###############################################################################

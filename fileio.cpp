@@ -36,7 +36,10 @@
 
  	}
  	else
+ 	{
  		errorOut(6);
+ 		exit(0);
+ 	}
 
  	inputfile.close();
  	return size;
@@ -77,6 +80,9 @@
  			warningOut(1);
  	}
  	else
+ 	{
  		errorOut(6);
+ 		exit(0);
+ 	}
  	inputfile.close();
  }
